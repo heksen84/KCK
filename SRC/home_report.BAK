@@ -1,0 +1,47 @@
+PROCEDURE h_report(p1 as Character, p2 as Character)
+*===============================
+* Поиск дома
+*===============================
+LOCAL ALL1 as Number
+LOCAL ALL2 as Number
+LOCAL ALL3 as Number
+LOCAL ALL4 as Number
+LOCAL ALL5 as Number
+LOCAL ALL6 as Number
+LOCAL ALL7 as Number
+LOCAL ALL8 as Number
+LOCAL ALL9 as Number
+
+ALL1 = 0
+ALL2 = 0
+ALL3 = 0
+ALL4 = 0
+ALL5 = 0
+ALL6 = 0
+ALL7 = 0
+ALL8 = 0
+ALL9 = 0
+
+*============================
+* Создание отчета
+*============================
+SELECT * FROM ALIAS() WHERE;
+ALLTRIM(Улица) = p1 .AND. ALLTRIM(Дом) = p2;
+INTO TABLE DataDir+"home_report.dbf"
+
+USE DataDir+"home_report"
+SCAN
+	ALL1 = ALL1 + площадь
+	ALL2 = ALL2 + ластсальдо
+	ALL3 = ALL3 + начислено
+	ALL4 = ALL4 + коррекция
+	ALL5 = ALL5 + _451
+	ALL6 = ALL6 + _441
+	ALL7 = ALL7 + _334
+	ALL8 = ALL8 + _681
+	ALL9 = ALL9 + сальдо
+ENDSCAN
+
+REPORT FORM "home_report" TO PRINTER PROMPT NODIALOG PREVIEW
+_screen.ActiveForm.Release()
+ENDPROC
